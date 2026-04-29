@@ -40,6 +40,19 @@ class TaxiMeter:
             added_steps = extra_distance // distance_step - prev_extra_distance // distance_step
             self.fare += added_steps * distance_fare
 
+    def _validate(self, distance_m: int, speed_kmh: float, elapsed_sec: int) -> None:
+        if not isinstance(distance_m, int):
+            raise TypeError(f"distance_m must be an int: {distance_m!r}")
+        if distance_m < 0:
+            raise ValueError(f"distance_m must be non-negative: {distance_m}")
+        if speed_kmh < 0:
+            raise ValueError(f"speed_kmh must be non-negative: {speed_kmh}")
+        if not isinstance(elapsed_sec, int):
+            raise TypeError(f"elapsed_sec must be an int: {elapsed_sec!r}")
+        if elapsed_sec < 0:
+            raise ValueError(f"elapsed_sec must be non-negative: {elapsed_sec}")
+
     def update(self, distance_m: int, speed_kmh: float, elapsed_sec: int) -> None:
+        self._validate(distance_m, speed_kmh, elapsed_sec)
         self._update_distance_fare(distance_m)
         self._update_time_fare(speed_kmh, elapsed_sec)
