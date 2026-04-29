@@ -10,9 +10,9 @@ def main():
         {"distance_km": 0.4, "speed_kmh": 40, "elapsed_sec": 40},
     ]
 
-    for t in trips:
+    for i, t in enumerate(trips, 1):
         meter.update(t["distance_km"], t["speed_kmh"], t["elapsed_sec"])
-        print(meter.get_fare())
+        print(f"Trip {i}: {meter.get_fare()}")
 
 
 if __name__ == "__main__":

@@ -1,11 +1,14 @@
 class TaxiMeter:
 
-    def __init__(self):
-        base_fare = 500
+    BASE_FARE = 500
 
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
         self.total_distance = 0.0
         self.total_time_low_speed = 0
-        self.fare = base_fare
+        self.fare = self.BASE_FARE
 
     def _update_time_fare(self, speed_kmh, elapsed_sec):
         low_speed_threshold = 10
