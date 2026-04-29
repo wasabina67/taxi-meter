@@ -10,6 +10,9 @@ class TaxiMeter:
         self.total_time_low_speed = 0
         self.fare = self.BASE_FARE
 
+    def get_fare(self) -> int:
+        return self.fare
+
     def _update_time_fare(self, speed_kmh: float, elapsed_sec: int) -> None:
         low_speed_threshold = 10
         time_step = 90
@@ -40,6 +43,3 @@ class TaxiMeter:
     def update(self, distance_m: int, speed_kmh: float, elapsed_sec: int) -> None:
         self._update_distance_fare(distance_m)
         self._update_time_fare(speed_kmh, elapsed_sec)
-
-    def get_fare(self) -> int:
-        return self.fare
